@@ -1,0 +1,683 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SportMax - Tu Tienda Deportiva</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        /* Header */
+        header {
+            background: #1a1a2e;
+            color: white;
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        .logo span {
+            color: #ff6b35;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 2rem;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #ff6b35;
+        }
+        .btn {
+            background: #ff6b35;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #e55a2b;
+        }
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #ff6b35 100%);
+            color: white;
+            padding: 8rem 2rem 5rem;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+        }
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .hero-badge {
+            background: #ff6b35;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: #ccc;
+            margin-bottom: 2rem;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .btn-outline:hover {
+            background: white;
+            color: #1a1a2e;
+        }
+        .hero-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        /* Beneficios */
+        .beneficios {
+            background: #ff6b35;
+            color: white;
+            padding: 1.5rem 2rem;
+        }
+        .beneficios-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+        .beneficio {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .beneficio i {
+            font-size: 1.5rem;
+        }
+        /* Categorías */
+        .categorias {
+            padding: 5rem 2rem;
+            background: #f8f9fa;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #1a1a2e;
+            margin-bottom: 0.5rem;
+        }
+        .section-title p {
+            color: #666;
+        }
+        .categorias-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 1.5rem;
+        }
+        .categoria {
+            background: white;
+            padding: 2rem 1rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            cursor: pointer;
+        }
+        .categoria:hover {
+            transform: translateY(-5px);
+            border-color: #ff6b35;
+        }
+        .categoria i {
+            font-size: 3rem;
+            color: #ff6b35;
+            margin-bottom: 1rem;
+        }
+        .categoria h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .categoria p {
+            font-size: 0.8rem;
+            color: #666;
+        }
+        /* Ofertas */
+        .ofertas {
+            padding: 5rem 2rem;
+        }
+        .ofertas-header {
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .ofertas-header h2 {
+            font-size: 2rem;
+            color: #1a1a2e;
+        }
+        .timer {
+            background: #ffe5e5;
+            color: #e53935;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: bold;
+        }
+        .productos-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+        .producto {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+        .producto:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        .producto-img {
+            position: relative;
+        }
+        .producto-img img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .oferta-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #e53935;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        .producto-info {
+            padding: 1.5rem;
+        }
+        .producto-info h3 {
+            margin-bottom: 0.5rem;
+        }
+        .precios {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .precio-actual {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #ff6b35;
+        }
+        .precio-antes {
+            color: #999;
+            text-decoration: line-through;
+            font-size: 0.9rem;
+        }
+        .btn-producto {
+            width: 100%;
+            background: #1a1a2e;
+            color: white;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .btn-producto:hover {
+            background: #ff6b35;
+        }
+        /* Marcas */
+        .marcas {
+            background: #f0f0f0;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        .marcas h3 {
+            color: #999;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+        }
+        .marcas-logos {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+            font-size: 1.5rem;
+            color: #999;
+            font-weight: bold;
+        }
+        /* Contacto */
+        .contacto {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            padding: 5rem 2rem;
+        }
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 0.5rem;
+            color: #1a1a2e;
+        }
+        .form-container > p {
+            text-align: center;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #ff6b35;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        .btn-submit {
+            width: 100%;
+            background: #ff6b35;
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .btn-submit:hover {
+            background: #e55a2b;
+        }
+        .form-note {
+            text-align: center;
+            margin-top: 1rem;
+            color: #999;
+            font-size: 0.9rem;
+        }
+        /* Footer */
+        footer {
+            background: #0f0f1a;
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+        }
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        .footer-section p {
+            color: #888;
+            margin-bottom: 0.5rem;
+        }
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            text-align: center;
+            color: #666;
+        }
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero-buttons {
+                justify-content: center;
+            }
+            .beneficios-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .categorias-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .productos-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo">🏆 Sport<span>Max</span></div>
+            <nav>
+                <a href="#categorias">Categorías</a>
+                <a href="#ofertas">Ofertas</a>
+                <a href="#contacto">Contacto</a>
+            </nav>
+            <a href="#contacto" class="btn">¡Cotiza Ahora!</a>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <span class="hero-badge">🔥 NUEVA TEMPORADA</span>
+                <h1>Equípate Como un Campeón</h1>
+                <p>Las mejores marcas deportivas con hasta 40% de descuento. Envío gratis en compras mayores a $999.</p>
+                <div class="hero-buttons">
+                    <a href="#contacto" class="btn">🛒 Ver Catálogo</a>
+                    <a href="#ofertas" class="btn-outline">🏷️ Ver Ofertas</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://placehold.co/500x400" alt="Productos deportivos">
+            </div>
+        </div>
+    </section>
+
+    <!-- Beneficios -->
+    <section class="beneficios">
+        <div class="beneficios-grid">
+            <div class="beneficio"><i class="fas fa-truck"></i> Envío Gratis +$999</div>
+            <div class="beneficio"><i class="fas fa-credit-card"></i> Hasta 12 MSI</div>
+            <div class="beneficio"><i class="fas fa-undo"></i> 30 Días Devolución</div>
+            <div class="beneficio"><i class="fas fa-check-circle"></i> 100% Original</div>
+        </div>
+    </section>
+
+    <!-- Categorías -->
+    <section class="categorias" id="categorias">
+        <div class="section-title">
+            <h2>Nuestras Categorías</h2>
+            <p>Todo lo que necesitas para tu deporte favorito</p>
+        </div>
+        <div class="categorias-grid">
+            <div class="categoria">
+                <i class="fas fa-futbol"></i>
+                <h3>Fútbol</h3>
+                <p>Balones, zapatos, uniformes</p>
+            </div>
+            <div class="categoria">
+                <i class="fas fa-basketball-ball"></i>
+                <h3>Basketball</h3>
+                <p>Tenis, balones, accesorios</p>
+            </div>
+            <div class="categoria">
+                <i class="fas fa-running"></i>
+                <h3>Running</h3>
+                <p>Tenis, ropa, smartwatches</p>
+            </div>
+            <div class="categoria">
+                <i class="fas fa-dumbbell"></i>
+                <h3>Gimnasio</h3>
+                <p>Pesas, guantes, suplementos</p>
+            </div>
+            <div class="categoria">
+                <i class="fas fa-table-tennis"></i>
+                <h3>Tenis</h3>
+                <p>Raquetas, pelotas, ropa</p>
+            </div>
+            <div class="categoria">
+                <i class="fas fa-biking"></i>
+                <h3>Ciclismo</h3>
+                <p>Bicicletas, cascos, accesorios</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ofertas -->
+    <section class="ofertas" id="ofertas">
+        <div class="ofertas-header">
+            <div>
+                <h2>🔥 Ofertas de la Semana</h2>
+                <p>Hasta 40% de descuento</p>
+            </div>
+            <span class="timer">⏰ Termina en 3 días</span>
+        </div>
+        <div class="productos-grid">
+            <div class="producto">
+                <div class="producto-img">
+                    <img src="https://placehold.co/300x200" alt="Tenis Running">
+                    <span class="oferta-badge">OFERTA</span>
+                </div>
+                <div class="producto-info">
+                    <h3>Tenis Running Pro</h3>
+                    <div class="precios">
+                        <span class="precio-actual">$1,899</span>
+                        <span class="precio-antes">$2,499</span>
+                    </div>
+                    <button class="btn-producto">Agregar 🛒</button>
+                </div>
+            </div>
+            <div class="producto">
+                <div class="producto-img">
+                    <img src="https://placehold.co/300x200" alt="Balón Fútbol">
+                    <span class="oferta-badge">OFERTA</span>
+                </div>
+                <div class="producto-info">
+                    <h3>Balón Fútbol Elite</h3>
+                    <div class="precios">
+                        <span class="precio-actual">$599</span>
+                        <span class="precio-antes">$899</span>
+                    </div>
+                    <button class="btn-producto">Agregar 🛒</button>
+                </div>
+            </div>
+            <div class="producto">
+                <div class="producto-img">
+                    <img src="https://placehold.co/300x200" alt="Mancuernas">
+                    <span class="oferta-badge">OFERTA</span>
+                </div>
+                <div class="producto-info">
+                    <h3>Set Mancuernas 20kg</h3>
+                    <div class="precios">
+                        <span class="precio-actual">$1,299</span>
+                        <span class="precio-antes">$1,799</span>
+                    </div>
+                    <button class="btn-producto">Agregar 🛒</button>
+                </div>
+            </div>
+            <div class="producto">
+                <div class="producto-img">
+                    <img src="https://placehold.co/300x200" alt="Jersey">
+                    <span class="oferta-badge">OFERTA</span>
+                </div>
+                <div class="producto-info">
+                    <h3>Jersey Deportivo</h3>
+                    <div class="precios">
+                        <span class="precio-actual">$449</span>
+                        <span class="precio-antes">$699</span>
+                    </div>
+                    <button class="btn-producto">Agregar 🛒</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marcas -->
+    <section class="marcas">
+        <h3>MARCAS QUE MANEJAMOS</h3>
+        <div class="marcas-logos">
+            <span>NIKE</span>
+            <span>ADIDAS</span>
+            <span>PUMA</span>
+            <span>UNDER ARMOUR</span>
+            <span>REEBOK</span>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section class="contacto" id="contacto">
+        <div class="form-container">
+            <h2>¿Buscas algo especial? 🎯</h2>
+            <p>Déjanos tus datos y te enviamos nuestro catálogo con precios especiales</p>
+            <form>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Nombre *</label>
+                        <input type="text" placeholder="Tu nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label>WhatsApp *</label>
+                        <input type="tel" placeholder="55 1234 5678" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" placeholder="tu@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Deporte de interés</label>
+                        <select>
+                            <option value="">Selecciona un deporte</option>
+                            <option value="futbol">Fútbol</option>
+                            <option value="basketball">Basketball</option>
+                            <option value="running">Running</option>
+                            <option value="gimnasio">Gimnasio</option>
+                            <option value="tenis">Tenis</option>
+                            <option value="ciclismo">Ciclismo</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>¿Qué producto buscas?</label>
+                    <textarea rows="3" placeholder="Cuéntanos qué necesitas..."></textarea>
+                </div>
+                <button type="submit" class="btn-submit">📩 Recibir Catálogo con Precios</button>
+                <p class="form-note">🔒 No spam. Solo ofertas exclusivas.</p>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>🏆 SportMax</h4>
+                <p>Tu tienda deportiva de confianza</p>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <p>📍 Plaza Deportiva #456, Local 12</p>
+                <p>📞 (55) 9876-5432</p>
+                <p>💬 WhatsApp: 55 1234 5678</p>
+            </div>
+            <div class="footer-section">
+                <h4>Horarios</h4>
+                <p>Lunes a Sábado: 10:00 - 20:00</p>
+                <p>Domingos: 11:00 - 18:00</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2026 SportMax. Todos los derechos reservados.
+        </div>
+    </footer>
+</body>
+</html>
